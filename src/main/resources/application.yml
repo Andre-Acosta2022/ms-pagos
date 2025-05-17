@@ -2,26 +2,28 @@ spring:
   application:
     name: ms-pagos
   datasource:
-    url: jdbc:mysql://localhost:3306/ms_pagos
+    url: jdbc:mysql://mysql-db:3306/ms_pagos
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    open-in-view: false  # Desactiva la opci?n open-in-view
+    open-in-view: false  # Desactiva la opcion open-in-view
     hibernate:
       ddl-auto: update
 
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
-
+        open-in-view: false
   cloud:
     config:
       enabled: false  # Desactiva Spring Cloud Config
 
 server:
-  port: 8081
+  port: 8083
 
 eureka:
   client:
-    enabled: false  # Desactiva Eureka
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
